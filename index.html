@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taylor PathFinder — Series-Based Solver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Enable class-based dark mode
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#0ea5e9', // sky-500
+              'brand-secondary': '#4f46e5', // indigo-600
+              
+              // Light Theme Colors
+              'base-100': '#ffffff',
+              'base-200': '#f3f4f6', // gray-100
+              'base-300': '#e5e7eb', // gray-200
+              'base-content': '#1f2937', // gray-800
+              'base-content-secondary': '#4b5563', // gray-600
+              
+              // Dark Theme Colors
+              'dark-base-100': '#1f2937', // gray-800
+              'dark-base-200': '#111827', // gray-900
+              'dark-base-300': '#374151', // gray-700
+              'dark-base-content': '#f9fafb', // gray-50
+              'dark-base-content-secondary': '#9ca3af', // gray-400
+            },
+            boxShadow: {
+              'card': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+            },
+            typography: (theme) => ({
+              DEFAULT: {
+                css: {
+                  '--tw-prose-body': theme('colors.base-content'),
+                  '--tw-prose-headings': theme('colors.base-content'),
+                  '--tw-prose-bold': theme('colors.base-content'),
+                  '--tw-prose-code': theme('colors.base-content'),
+                  '--tw-prose-invert-body': theme('colors.dark-base-content'),
+                  '--tw-prose-invert-headings': theme('colors.dark-base-content'),
+                  '--tw-prose-invert-bold': theme('colors.dark-base-content'),
+                   '--tw-prose-invert-code': theme('colors.dark-base-content'),
+                }
+              }
+            })
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.2.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-base-200 dark:bg-dark-base-200 text-base-content dark:text-dark-base-content antialiased transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

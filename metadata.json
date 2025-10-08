@@ -1,0 +1,5 @@
+{
+  "name": "Taylor PathFinder — Series-Based Solver",
+  "description": "A modern, responsive web UI prototype that lets users configure Taylor method parameters, run simulations (mocked), visualize results (solution + error), download CSV/JSON, and manage configs.",
+  "requestFramePermissions": []
+}
