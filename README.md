@@ -1,20 +1,23 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Taylor PathFinder — Series-Based Solver
 
-# Run and deploy your AI Studio app
+**Taylor PathFinder** is a frontend-first prototype that demonstrates solving initial value problems (IVPs) using the **Taylor series expansion** method.  
+This repo is a React + TypeScript (Vite) UI with a mocked backend (fixtures) so you can demo simulations, plots and CSV/JSON outputs without a real server.
 
-This contains everything you need to run your app locally.
+> Short: configure `StepSize`, `Order`, `t0`, `y0`, run a simulation, and get solution + error plots. Easy-peasy demo for faculty, hackathons, or project showcase. 🚀
 
-View your app in AI Studio: https://ai.studio/apps/drive/1BjPmHv81uU8weVW2wXBvYgyACbaZGp-k
+---
 
-## Run Locally
+## Quick demo (one-liners)
+```bash
+# 1. clone (if not already)
+git clone https://github.com/VISHAAL21-7/Taylor-PathFinder.git
+cd Taylor-PathFinder
 
-**Prerequisites:**  Node.js
+# 2. install
+npm install
 
+# 3. run dev server
+npm run dev
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+# 4. open
+http://localhost:5173
