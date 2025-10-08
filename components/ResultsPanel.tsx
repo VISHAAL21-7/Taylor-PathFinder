@@ -89,26 +89,28 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, onNewExperiment })
                     Error Plot
                 </button>
             </nav>
-            <div className="flex items-center gap-2 py-2">
-                <label htmlFor="compare-toggle" className="text-sm font-medium text-base-content-secondary dark:text-dark-base-content-secondary">Compare Methods</label>
-                <button
-                    role="switch"
-                    aria-checked={isComparing}
-                    id="compare-toggle"
-                    onClick={() => handleCompareToggle(!isComparing)}
-                    className={`${isComparing ? 'bg-brand-primary' : 'bg-gray-200 dark:bg-gray-600'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2`}
-                >
-                    <span
-                        aria-hidden="true"
-                        className={`${isComparing ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
-                    />
-                </button>
-                {isComparisonLoading && (
-                     <svg className="animate-spin h-4 w-4 text-brand-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                )}
+            <div className="flex items-center gap-4 py-2">
+                <div className="flex items-center gap-2">
+                    <label htmlFor="compare-toggle" className="text-sm font-medium text-base-content-secondary dark:text-dark-base-content-secondary">Compare Methods</label>
+                    <button
+                        role="switch"
+                        aria-checked={isComparing}
+                        id="compare-toggle"
+                        onClick={() => handleCompareToggle(!isComparing)}
+                        className={`${isComparing ? 'bg-brand-primary' : 'bg-gray-200 dark:bg-gray-600'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2`}
+                    >
+                        <span
+                            aria-hidden="true"
+                            className={`${isComparing ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+                        />
+                    </button>
+                    {isComparisonLoading && (
+                         <svg className="animate-spin h-4 w-4 text-brand-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    )}
+                </div>
             </div>
         </div>
         {comparisonError && <p className="text-red-500 text-sm mt-2">{comparisonError}</p>}

@@ -52,12 +52,12 @@ const SolutionPlot: React.FC<SolutionPlotProps> = ({ data, comparisonData }) => 
                         labelStyle={{ color: textColor }}
                     />
                     <Legend wrapperStyle={{ color: textColor }} />
-                    <Line type="monotone" dataKey="taylor" name="Taylor" stroke="#0ea5e9" strokeWidth={2} dot={false} />
+                    <Line type="monotone" dataKey="taylor" name="Taylor" stroke="#0ea5e9" strokeWidth={2.5} dot={false} />
                     <Line type="monotone" dataKey="exact" name="Exact" stroke="#4f46e5" strokeWidth={2} strokeDasharray="5 5" dot={false} />
                     {comparisonData && (
                         <>
-                            <Line type="monotone" dataKey="euler" name="Euler" stroke="#f59e0b" strokeWidth={1.5} dot={false} />
-                            <Line type="monotone" dataKey="rk4" name="RK4" stroke="#10b981" strokeWidth={1.5} dot={false} />
+                            <Line type="monotone" dataKey="euler" name="Euler" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="10 5" dot={false} />
+                            <Line type="monotone" dataKey="rk4" name="RK4" stroke="#10b981" strokeWidth={2.5} strokeDasharray="1 8" dot={false} />
                         </>
                     )}
                 </LineChart>
