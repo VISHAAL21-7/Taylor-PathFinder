@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { SimulationResults, ComparisonPlotData } from '../types.ts';
-import { fetchComparisonData } from '../services/simulationService.ts';
+import React, { useState } from 'react';
+import { SimulationResults } from '../types.ts';
 import SummaryCard from './SummaryCard.tsx';
 import SolutionPlot from './SolutionPlot.tsx';
 import ErrorPlot from './ErrorPlot.tsx';
@@ -14,26 +13,6 @@ interface ResultsPanelProps {
 const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, onNewExperiment }) => {
     const [activeTab, setActiveTab] = useState<'solution' | 'error'>('solution');
     const [isComparing, setIsComparing] = useState(false);
-    const [comparisonData, setComparisonData] = useState<ComparisonPlotData | null>(null);
-    const [isComparisonLoading, setIsComparisonLoading] = useState(false);
-    const [comparisonError, setComparisonError] = useState<string | null>(null);
-
-    const handleCompareToggle = useCallback(async (enabled: boolean) => {
-        setIsComparing(enabled);
-        if (enabled && !comparisonData) {
-            setIsComparisonLoading(true);
-            setComparisonError(null);
-            try {
-                const data = await fetchComparisonData();
-                setComparisonData(data.solution);
-            } catch (err) {
-                setComparisonError('Failed to load comparison data.');
-                setIsComparing(false); // Toggle off on error
-            } finally {
-                setIsComparisonLoading(false);
-            }
-        }
-    }, [comparisonData]);
 
     const downloadCSV = () => {
         const headers = "t,y_taylor,y_exact,abs_error";
@@ -96,7 +75,7 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, onNewExperiment })
                         role="switch"
                         aria-checked={isComparing}
                         id="compare-toggle"
-                        onClick={() => handleCompareToggle(!isComparing)}
+                        onClick={() => setIsComparing(!isComparing)}
                         className={`${isComparing ? 'bg-brand-primary' : 'bg-gray-200 dark:bg-gray-600'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2`}
                     >
                         <span
@@ -104,18 +83,11 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, onNewExperiment })
                             className={`${isComparing ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
                         />
                     </button>
-                    {isComparisonLoading && (
-                         <svg className="animate-spin h-4 w-4 text-brand-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    )}
                 </div>
             </div>
         </div>
-        {comparisonError && <p className="text-red-500 text-sm mt-2">{comparisonError}</p>}
         <div className="mt-6">
-            {activeTab === 'solution' && <SolutionPlot data={results.plots.solution} comparisonData={isComparing ? comparisonData : null} />}
+            {activeTab === 'solution' && <SolutionPlot data={results.plots.solution} showComparison={isComparing} />}
             {activeTab === 'error' && <ErrorPlot data={results.plots.error} />}
         </div>
       </div>

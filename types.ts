@@ -41,16 +41,13 @@ export interface SimulationPlots {
     t: number[];
     taylor: number[];
     exact: number[];
+    euler?: number[];
+    rk4?: number[];
   };
   error: {
     t: number[];
     error: number[];
   };
-}
-
-export interface ComparisonPlotData {
-  euler: number[];
-  rk4: number[];
 }
 
 export interface SimulationResults {

@@ -1,19 +1,19 @@
 import React from 'react';
-import { SimulationPlots, ComparisonPlotData } from '../types.ts';
+import { SimulationPlots } from '../types.ts';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface SolutionPlotProps {
     data: SimulationPlots['solution'];
-    comparisonData?: ComparisonPlotData | null;
+    showComparison: boolean;
 }
 
-const SolutionPlot: React.FC<SolutionPlotProps> = ({ data, comparisonData }) => {
+const SolutionPlot: React.FC<SolutionPlotProps> = ({ data, showComparison }) => {
     const plotData = data.t.map((t_val, i) => ({
         t: t_val,
         taylor: data.taylor[i],
         exact: data.exact[i],
-        euler: comparisonData?.euler[i],
-        rk4: comparisonData?.rk4[i],
+        euler: data.euler?.[i],
+        rk4: data.rk4?.[i],
     }));
     
     // Check for dark mode to adjust text color
@@ -54,7 +54,7 @@ const SolutionPlot: React.FC<SolutionPlotProps> = ({ data, comparisonData }) => 
                     <Legend wrapperStyle={{ color: textColor }} />
                     <Line type="monotone" dataKey="taylor" name="Taylor" stroke="#0ea5e9" strokeWidth={2.5} dot={false} />
                     <Line type="monotone" dataKey="exact" name="Exact" stroke="#4f46e5" strokeWidth={2} strokeDasharray="5 5" dot={false} />
-                    {comparisonData && (
+                    {showComparison && (
                         <>
                             <Line type="monotone" dataKey="euler" name="Euler" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="10 5" dot={false} />
                             <Line type="monotone" dataKey="rk4" name="RK4" stroke="#10b981" strokeWidth={2.5} strokeDasharray="1 8" dot={false} />
